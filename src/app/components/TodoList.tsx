@@ -17,7 +17,11 @@ function errorToString(err: unknown): string {
   return String(err);
 }
 
-export default function TodoList() {
+interface TodoListProps {
+  initialTodos: Todo[];
+}
+
+export default function TodoList({ initialTodos }: TodoListProps) {
   const [newTodoTitle, setNewTodoTitle] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [todoToDelete, setTodoToDelete] = useState<Todo | null>(null);
@@ -38,7 +42,7 @@ export default function TodoList() {
     updateError,
     deleteError,
     refetch,
-  } = useTodo();
+  } = useTodo(initialTodos);
 
   function getAllErrors() {
     const messages = [];

@@ -1,17 +1,10 @@
-'use client';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import DashboardLayout from './components/DashboardLayout';
-import TodoList from './components/TodoList';
-
-const queryClient = new QueryClient();
+import TodoListServer from './components/TodoListServer';
 
 export default function Home() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <DashboardLayout>
-        <TodoList />
-      </DashboardLayout>
-    </QueryClientProvider>
+    <DashboardLayout>
+      <TodoListServer />
+    </DashboardLayout>
   );
 }

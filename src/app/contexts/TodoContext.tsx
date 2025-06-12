@@ -24,11 +24,16 @@ interface TodoContextType {
 
 const TodoContext = createContext<TodoContextType | undefined>(undefined);
 
-export function TodoProvider({ children }: { children: ReactNode }) {
+interface TodoProviderProps {
+  children: ReactNode;
+  initialTodos?: Todo[];
+}
+
+export function TodoProvider({ children, initialTodos }: TodoProviderProps) {
   const queryClient = useQueryClient();
 
   // Fetch todos
-  const { data: todos = [], isLoading, error, refetch } = useQuery<Todo[]>({
+  const { data: todos = initialTodos || [], isLoading, error, refetch } = useQuery<Todo[]>({
     queryKey: ['todos'],
     queryFn: async () => {
       const response = await fetch(API_URL);
@@ -37,6 +42,7 @@ export function TodoProvider({ children }: { children: ReactNode }) {
       }
       return response.json();
     },
+    initialData: initialTodos,
   });
 
   // Create todo mutation

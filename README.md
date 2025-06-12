@@ -1,92 +1,83 @@
-# Todo App – Interview Task Solution
+# Todo App
 
 ## Overview
-This project is a Todo application built with Next.js (App Router), TypeScript, and TanStack Query. It demonstrates server data fetching, React Context for state management, and a fully-typed, modular frontend architecture. The app fetches todos from the JSONPlaceholder API and provides a modern, interactive UI for managing them.
+This application provides a seamless experience for managing todos with real-time updates, optimistic UI, and a beautiful, responsive interface.
 
----
+## Features
 
-## Approach
+### Core Functionality
+- Create, read, update, and delete todos
+- Mark todos as complete/incomplete
+- Pagination (10 items per page)
+- Real-time updates with optimistic UI
+- Quick stats dashboard (total, completed, pending todos)
 
-**1. Next.js App Router**
-- The project uses the `/app` directory and leverages both server and client components as per Next.js best practices.
+### User Experience
+- Modern, responsive design
+- Smooth animations and transitions
+- Loading states for all operations
+- Error handling with user-friendly messages
+- Delete confirmation dialogs
+- Instant feedback on all actions
 
-**2. Data Fetching**
-- Todos are fetched from the [JSONPlaceholder](https://jsonplaceholder.typicode.com/todos) API.
-- Data fetching is handled on the client using TanStack Query, which provides caching, background updates, and mutation support.
-- The fetching logic is encapsulated in a custom React Context (`TodoContext`) for global access.
+### Technical Highlights
+- Server-side rendering
+- Type-safe development with TypeScript
+- Efficient data management with TanStack Query
+- Responsive design with Tailwind CSS
+- Modular component architecture
 
-**3. Context Provider**
-- `TodoContext` is a React Context that provides the fetched todos and CRUD operations (create, update, delete) to all child components.
-- The context is accessible from any component, no matter how deeply nested, avoiding prop drilling.
-- The provider is set up in a top-level client component (`QueryProvider`) that wraps the app.
+## Getting Started
 
-**4. TypeScript**
-- All code is fully typed, including API responses, context values, and component props.
-- Types for todos and mutations are defined in `src/app/types/todo.ts`.
+### Prerequisites
+- Node.js 18.x or later
+- npm or yarn package manager
 
-**5. UI**
-- The UI is built with React components and Tailwind CSS for styling.
-- Features include:
-  - Todo list with pagination (10 per page)
-  - Add, update (toggle complete), and delete todos
-  - Quick stats (total, completed, pending)
-  - Loading and error states
-  - Confirmation dialog for deletes
-  - Optimistic UI updates for a responsive experience
+### Installation
+1. Clone the repository:
 
-**6. Bonus Features**
-- All mutations (add, update, delete) are handled via TanStack Query, with automatic cache updates and optimistic UI.
-- Loading states are shown for all async actions.
-- Error handling is implemented for all network operations.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
----
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-## How the Context Works
-- The `TodoContext` uses TanStack Query under the hood to fetch and mutate todos.
-- It exposes the todos array, loading states, and mutation functions via a custom hook (`useTodo`).
-- Any component can call `const { todos, createTodo, updateTodo, deleteTodo } = useTodo();` to access and manipulate the data.
-- The context ensures that all components stay in sync with the latest data, and that UI updates are instant and consistent.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
----
+## Project Structure
 
-## How TanStack Query is Used
-- **Fetching:** `useQuery` is used to fetch the todos list and keep it up to date.
-- **Mutations:** `useMutation` is used for create, update, and delete operations, with cache updates and optimistic UI.
-- **Provider:** The app is wrapped in `QueryClientProvider` to enable TanStack Query features globally.
-- **Benefits:** This approach provides automatic caching, background refetching, and a robust, scalable data layer for the app.
+```
+src/
+├── app/
+│   ├── components/         # UI Components
+│   │   ├── TodoList.tsx   # Main todo list
+│   │   ├── TodoItem.tsx   # Individual todo
+│   │   ├── TodoForm.tsx   # Add/Edit form
+│   │   └── ...
+│   ├── contexts/          # State management
+│   ├── types/            # TypeScript definitions
+│   └── ...
+```
 
----
+## Key Components
 
-## File Structure (Key Parts)
-- `src/app/contexts/TodoContext.tsx` – Context provider and hook for todos
-- `src/app/components/TodoList.tsx` – Main todo list UI
-- `src/app/components/TodoItem.tsx` – Single todo item
-- `src/app/components/TodoForm.tsx` – Add new todo form
-- `src/app/components/PaginationControls.tsx` – Pagination UI
-- `src/app/components/DeleteDialog.tsx` – Delete confirmation dialog
-- `src/app/components/DashboardLayout.tsx` – Dashboard layout and stats
-- `src/app/QueryProvider.tsx` – Top-level provider for context and TanStack Query
+### TodoList
+The main component that displays the list of todos with pagination and filtering capabilities.
 
----
+### TodoItem
+Individual todo items with complete/incomplete toggle and delete functionality.
 
-## Running the App
-1. Install dependencies: `npm install`
-2. Start the dev server: `npm run dev`
-3. Visit [http://localhost:3000](http://localhost:3000)
+### TodoForm
+Form component for adding new todos with validation and error handling.
 
----
+### DashboardLayout
+Main layout component that includes the todo list and quick stats.
 
-## Interview Task Requirements Checklist
-- [x] Next.js App Router
-- [x] Data fetching (JSONPlaceholder API)
-- [x] React Context for data
-- [x] TypeScript throughout
-- [x] UI displays and updates data
-- [x] Bonus: Refetch/update, loading, error states
-
----
-
-## Notes
-- The app is fully modular and easy to extend.
-- All state and data logic is centralized in context and TanStack Query for maintainability.
-- The codebase is ready for production features like authentication, theming, or more complex data models.
+## Data Management
+- Uses TanStack Query for efficient data fetching and caching
+- Implements optimistic updates for instant feedback
+- Handles loading and error states gracefully
