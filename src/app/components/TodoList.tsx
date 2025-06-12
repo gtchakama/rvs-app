@@ -42,7 +42,7 @@ export default function TodoList({ initialTodos }: TodoListProps) {
     updateError,
     deleteError,
     refetch,
-  } = useTodo(initialTodos);
+  } = useTodo();
 
   function getAllErrors() {
     const messages = [];
