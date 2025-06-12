@@ -17,7 +17,7 @@ export default async function TodoListServer() {
   try {
     const initialTodos = await getTodos();
     return <TodoList initialTodos={initialTodos} />;
-  } catch (e) {
+  } catch {
     return <div className="p-6 text-red-600">Failed to load todos. Please try again later.</div>;
   }
 } 
