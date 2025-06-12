@@ -18,10 +18,10 @@ function errorToString(err: unknown): string {
 }
 
 interface TodoListProps {
-  initialTodos: Todo[];
+  // initialTodos: Todo[]; // Removed unused prop
 }
 
-export default function TodoList({ initialTodos }: TodoListProps) {
+export default function TodoList() {
   const [newTodoTitle, setNewTodoTitle] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [todoToDelete, setTodoToDelete] = useState<Todo | null>(null);
