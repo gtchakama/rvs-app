@@ -19,7 +19,7 @@ export default function DeleteDialog({ open, todoTitle, onCancel, onConfirm, loa
       <div className="space-y-4">
         <h3 className="text-lg font-medium text-gray-900">Delete Todo</h3>
         <p className="text-gray-600">
-          Are you sure you want to delete "{todoTitle}"? This action cannot be undone.
+          Are you sure you want to delete &quot;{todoTitle}&quot;? This action cannot be undone.
         </p>
         <div className="flex justify-end gap-3">
           <button
